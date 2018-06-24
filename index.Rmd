@@ -1,0 +1,53 @@
+---
+title: "Are fewer people calling themselves Republican?"
+date: June 24, 2018
+author: David W. Body
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r source, include=FALSE}
+source("national_party_affiliation.R")
+```
+
+## Are fewer people calling themselves Republicans?
+
+A [tweet](https://twitter.com/joshbloch/status/1010568596894842881) yesterday mentioned Trump's 90% approval rating among Republicans, and a [reply](https://twitter.com/glv/status/1010572497799041025) pointed out that this might be related to fewer people identifying as Republicans. The [article](https://qz.com/1295674/donald-trump-now-owns-the-republican-party/) cited states
+
+> ... Fewer people identifying as Republicans could help explain Trump’s unusually strong support. Only 26% of Americans identify themselves as Republican, [according to Gallup](http://news.gallup.com/poll/15370/Party-Affiliation.aspx)—compared with 31% in February 2017. ...
+
+I thought that was interesting, so I decided to grab the [data from Gallup](http://news.gallup.com/poll/15370/Party-Affiliation.aspx) and take a look for myself.
+
+## Party affiliation since 2004
+
+The first plot below is based on responses to the question "In politics, as of today, do you consider yourself a Republican, a Democrat or an independent?" The data goes from 2004 through May 2018.
+
+```{r parties, echo=FALSE, message=FALSE}
+parties_plot
+```
+
+I was surprised by how noisy this data is so I added [LOESS curves](https://en.wikipedia.org/wiki/Local_regression) with 95% confidence intervals to help highlight any trends. This data does not appear to support the idea that the number of people identifying as Republican has been falling in recent years.
+
+## Party identifiers plus leaners
+
+Gallup also asks people who identify as Independent whether they lean Republican or Democrat. The question is "(Asked of independents) As of today, do you lean more to the Democratic Party or the Republican Party?" Gallup reports percentages combining party identifiers + leaners. That data looks like this, where Republicans means Republicans + Republican leaners and Democrats means Democrats + Democratic leaners:
+
+```{r leaning, echo=FALSE, message=FALSE}
+leaning_plot
+```
+
+Here again the data is pretty noisy, but perhaps there is a bit of a trend in favor of Democrats in recent years.
+
+It will be interesting to see how this plays out through the rest of 2018 and into 2020.
+
+----
+
+Source code and data: [https://github.com/davidbody/national-party-affiliation](https://github.com/davidbody/national-party-affiliation)
+
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
